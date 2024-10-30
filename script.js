@@ -8,18 +8,37 @@ function heron(a, b, c){
 
 function ambiguous(angle, a, b){
 
-    const h = b* Math.sin(angle);
+    const h = b* Math.sin((angle* (Math.PI/180)));
      if (angle<90){
-        if (a < h) {
+        if (a >= b){
+            return "One triangle";
+        } else if (a < h) {
             return "No triangle";
         } else if (a==h){
             return "Right Triangle";
         } else {
-            return "One Triangle";
+            return "Two Triangles";
         }
     } else if (angle==90){
-
+        return "Right Triangle";
+        // fix
     } else if (angle < 180){
-
+        if (a <= b){
+            return "No triangle";
+        } else {
+            return "One triangle";
+        }
     } 
+}
+
+console.log(ambiguous(130, 5, 4));
+
+function newton(g){
+    var x;
+    function f(x) => 6*x*x*x*x - 13*x*x*x - 18*x*x + 7*x + 6;
+    function fP(x) => 24*x*x*x - 39*x*x - 36*x + 7;
+
+
+
+
 }
