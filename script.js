@@ -33,12 +33,48 @@ function ambiguous(angle, a, b){
 
 console.log(ambiguous(130, 5, 4));
 
-function newton(g){
-    var x;
-    function f(x) => 6*x*x*x*x - 13*x*x*x - 18*x*x + 7*x + 6;
-    function fP(x) => 24*x*x*x - 39*x*x - 36*x + 7;
 
+const f = (g) => {
+        return 6*g*g*g*g - 13*g*g*g - 18*g*g + 7*g + 6;
+    }
 
+const fp = (g) => {
+        return 24*g*g*g - 39*g*g - 36*g + 7;
+    }
 
+function newton(x){
+    let ans = x;
+    for (let i = 0; i<4; i++){
+        ans = ans - f(ans)/fp(ans);
+    }
+    
+    return ans;
 
+    // fix for exact accuracy
 }
+
+// console.log(newton(-10));
+
+let coef = [1, 2, 3, 4, 3, 2];
+let expo = [4, 3, 2, 1, 0, 3];
+
+function polynomial(coef, expo, x){
+    let fx = ["f(x) = ", 0];
+    for (let i=0; i<coef.length; i++){
+        fx[0] += coef[i] + "x^" + expo[i];
+        if (i != coef.length-1){
+            fx[0] += " + ";
+        }
+    }
+
+    const map = expo.map((value) => {
+        return x**value;
+      });
+      
+    map.forEach((item, index) => {
+        fx[1] += item*coef[index];
+    })
+    return fx;
+}
+
+console.log(polynomial(coef, expo, 1));
