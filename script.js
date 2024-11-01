@@ -69,12 +69,13 @@ function newton(x) {
     }
 
     let ans = x;
-    for (let i = 0; i < 10; i++) {
-        ans = ans - f(ans) / fp(ans);
+    let ans2 = ans - f(ans) / fp(ans);
+    while (Math.abs(ans2-ans) > 0.0001){
+        ans = ans2;
+        ans2 = ans -f(ans) / fp(ans);
     }
-    return ans;
 
-    // fix for exact accuracy
+    return ans.toFixed(3);
 }
 
 function polynomial(coef, expo, x) {
