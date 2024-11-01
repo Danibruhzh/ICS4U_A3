@@ -69,7 +69,7 @@ function newton(x) {
     }
 
     let ans = x;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 10; i++) {
         ans = ans - f(ans) / fp(ans);
     }
     return ans;
@@ -79,8 +79,20 @@ function newton(x) {
 
 function polynomial(coef, expo, x) {
     let fx = ["f(x) = ", 0];
+
+    const coefficients = coef.filter
+
+
     for (let i = 0; i < coef.length; i++) {
-        fx[0] += coef[i] + "x^" + expo[i];
+
+        if (expo[i]==0){
+            fx[0] += coef[i];
+        } else if (expo[i]==1){
+            fx[0] += coef[i] + "x";
+        } else {
+            fx[0] += coef[i] + "x^" + expo[i];
+        }
+
         if (i != coef.length - 1 && coef[i+1]>=0) {
             fx[0] += " + ";
         } else{
