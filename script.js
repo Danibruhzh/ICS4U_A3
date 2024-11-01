@@ -1,80 +1,99 @@
-function heron(a, b, c){
-    const sa = a*a;
-    const sb = b*b;
-    const sc = c*c;
+const herons = document.forms["heron"];
+document.getElementById("heron-button").addEventListener("click", () => {
+    herons.elements[3].value = (heron(herons.elements[0].value, herons.elements[1].value, herons.elements[2].value));
+});
+
+const ambig = document.forms["ambiguous"];
+document.getElementById("amb-button").addEventListener("click", () => {
+    ambig.elements[3].value = (ambiguous(ambig.elements[0].value, ambig.elements[1].value, ambig.elements[2].value));
+});
+
+const newtons = document.forms["newtons"];
+document.getElementById("newtons-button").addEventListener("click", () => {
+    newtons.elements[1].value = (newton(newtons.elements[0].value));
+});
+
+const poly = document.forms["polynomial"];
+document.getElementById("poly-button").addEventListener("click", () => {
+
+    coef = poly.elements[0].value.split(", ");
+    expo = poly.elements[1].value.split(", ");
+
+    poly.elements[3].value = (polynomial(coef, expo, poly.elements[2].value)[0]);
+    poly.elements[4].value = (polynomial(coef, expo, poly.elements[2].value)[1]);
+});
+
+function heron(a, b, c) {
+    const sa = a * a;
+    const sb = b * b;
+    const sc = c * c;
     const comb = sa + sb - sc;
-    return 0.25 * Math.sqrt(4*sa*sb - comb*comb);
+    return 0.25 * Math.sqrt(4 * sa * sb - comb * comb);
 }
 
-function ambiguous(angle, a, b){
+function ambiguous(angle, a, b) {
 
-    const h = b* Math.sin((angle* (Math.PI/180)));
-     if (angle<90){
-        if (a >= b){
+    const h = b * Math.sin((angle * (Math.PI / 180)));
+    //angle = 0 optional include
+    if (angle == 0){
+        return "No triangle";
+    } else if (angle < 90) {
+        if (a >= b) {
             return "One triangle";
         } else if (a < h) {
             return "No triangle";
-        } else if (a==h){
+        } else if (a == h) {
             return "Right Triangle";
         } else {
-            return "Two Triangles";
+            return "Two Triangles (Ambiguous Case)";
         }
-    } else if (angle==90){
+    } else if (angle == 90) {
         return "Right Triangle";
-        // fix
-    } else if (angle < 180){
-        if (a <= b){
+    } else if (angle < 180) {
+        if (a <= b) {
             return "No triangle";
         } else {
             return "One triangle";
         }
-    } 
+    }
 }
 
-console.log(ambiguous(130, 5, 4));
+function newton(x) {
 
-
-const f = (g) => {
-        return 6*g*g*g*g - 13*g*g*g - 18*g*g + 7*g + 6;
+    const f = (g) => {
+        return 6 * g * g * g * g - 13 * g * g * g - 18 * g * g + 7 * g + 6;
     }
 
-const fp = (g) => {
-        return 24*g*g*g - 39*g*g - 36*g + 7;
+    const fp = (g) => {
+        return 24 * g * g * g - 39 * g * g - 36 * g + 7;
     }
 
-function newton(x){
     let ans = x;
-    for (let i = 0; i<4; i++){
-        ans = ans - f(ans)/fp(ans);
+    for (let i = 0; i < 4; i++) {
+        ans = ans - f(ans) / fp(ans);
     }
-    
     return ans;
 
     // fix for exact accuracy
 }
 
-// console.log(newton(-10));
-
-let coef = [1, 2, 3, 4, 3, 2];
-let expo = [4, 3, 2, 1, 0, 3];
-
-function polynomial(coef, expo, x){
+function polynomial(coef, expo, x) {
     let fx = ["f(x) = ", 0];
-    for (let i=0; i<coef.length; i++){
+    for (let i = 0; i < coef.length; i++) {
         fx[0] += coef[i] + "x^" + expo[i];
-        if (i != coef.length-1){
+        if (i != coef.length - 1 && coef[i+1]>=0) {
             fx[0] += " + ";
+        } else{
+            fx[0] += " ";
         }
     }
 
     const map = expo.map((value) => {
-        return x**value;
-      });
-      
+        return x ** value;
+    });
+
     map.forEach((item, index) => {
-        fx[1] += item*coef[index];
+        fx[1] += item * coef[index];
     })
     return fx;
 }
-
-console.log(polynomial(coef, expo, 1));

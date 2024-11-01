@@ -1,14 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    asdasd
+    <div class="grid-container">
+        <div class="heron-container">
+            <h1>Heron's Formula</h1>
+            <form action="" id="heron" onsubmit=event.preventDefault();>
+                <label for="Side a">Side a:</label>
+                <input type="number" id="heron-a" min="0" required>
+                <label for="Side b">Side b:</label>
+                <input type="number" id="heron-b" min="0" required>
+                <label for="Side c">Side c:</label>
+                <input type="number" id="heron-c" min="0" required>
+                <label for="result">Area (Result):</label>
+                <input type="text" id="heron-ans" readonly>
+                <button id="heron-button">Calculate</button>
+            </form>
+        </div>
+        <div class="ambiguous-container">
+            <h1>Ambiguous Case</h1>
+            <form action="" id="ambiguous" onsubmit=event.preventDefault();>
+                <label for="Angle A">Angle A:</label>
+                <input type="number" id="amb-angle" min="0" max="180" required>
+                <label for="Side a">Side a:</label>
+                <input type="number" id="amb-a" min="0" required>
+                <label for="Side b">Side b:</label>
+                <input type="number" id="amb-b" min="0" required>
+                <label for="result">Triangle Type (Result):</label>
+                <input type="text" id="amb-ans" readonly>
+                <button id="amb-button">Calculate</button>
+            </form>
+        </div>
+        <div class="newtons-container">
+            <h1>Newton's Method</h1>
+            <form action="" id="newtons" onsubmit=event.preventDefault();>
+                <label for="Root Guess">Root Guess:</label>
+                <input type="number" id="newtons-guess" required>
+                <label for="result">Root Approximation (Result):</label>
+                <input type="text" id="newtons-ans" readonly>
+                <button id="newtons-button">Calculate</button>
+            </form>
+        </div>
+        <div class="polynomial-container">
+            <h1>Polynomial Function</h1>
+            <form action="" id="polynomial" onsubmit=event.preventDefault();>
+                <label for="Coefficients">Coefficients:</label>
+                <input type="text" id="poly-coef" required>
+                <label for="Exponents">Exponents:</label>
+                <input type="text" id="poly-expo" required>
+                <label for="x Value">x Value:</label>
+                <input type="number" id="poly-x" required>
+                <label for="Function result">Polynomial Function (Result):</label>
+                <input type="text" id="poly-func-ans" readonly>
+                <label for="Evaluation result">Polynomial Evaluation (Result):</label>
+                <input type="text" id="poly-func-eval" readonly>
+                <button id="poly-button">Calculate</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
+
 </html>
