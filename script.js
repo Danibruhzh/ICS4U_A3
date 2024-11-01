@@ -34,7 +34,6 @@ function heron(a, b, c) {
 function ambiguous(angle, a, b) {
 
     const h = b * Math.sin((angle * (Math.PI / 180)));
-    //angle = 0 optional include
     if (angle == 0){
         return "No triangle";
     } else if (angle < 90) {
