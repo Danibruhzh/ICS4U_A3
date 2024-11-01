@@ -81,9 +81,6 @@ function newton(x) {
 function polynomial(coef, expo, x) {
     let fx = ["f(x) = ", 0];
 
-    const coefficients = coef.filter
-
-
     for (let i = 0; i < coef.length; i++) {
 
         if (expo[i]==0){
