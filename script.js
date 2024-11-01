@@ -34,7 +34,7 @@ function heron(a, b, c) {
 function ambiguous(angle, a, b) {
 
     const h = b * Math.sin((angle * (Math.PI / 180)));
-    if (angle == 0){
+    if (angle == 0) {
         return "No triangle";
     } else if (angle < 90) {
         if (a >= b) {
@@ -69,9 +69,9 @@ function newton(x) {
 
     let ans = x;
     let ans2 = ans - f(ans) / fp(ans);
-    while (Math.abs(ans2-ans) > 0.0001){
+    while (Math.abs(ans2 - ans) > 0.0001) {
         ans = ans2;
-        ans2 = ans -f(ans) / fp(ans);
+        ans2 = ans - f(ans) / fp(ans);
     }
 
     return ans.toFixed(3);
@@ -82,17 +82,17 @@ function polynomial(coef, expo, x) {
 
     for (let i = 0; i < coef.length; i++) {
 
-        if (expo[i]==0){
+        if (expo[i] == 0) {
             fx[0] += coef[i];
-        } else if (expo[i]==1){
+        } else if (expo[i] == 1) {
             fx[0] += coef[i] + "x";
         } else {
             fx[0] += coef[i] + "x^" + expo[i];
         }
 
-        if (i != coef.length - 1 && coef[i+1]>=0) {
+        if (i != coef.length - 1 && coef[i + 1] >= 0) {
             fx[0] += " + ";
-        } else{
+        } else {
             fx[0] += " ";
         }
     }
